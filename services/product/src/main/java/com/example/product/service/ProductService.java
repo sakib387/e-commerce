@@ -19,6 +19,7 @@ public class ProductService {
     public Integer createProduct(
             Product request
     ) {
+        System.out.println(request);
         var product = this.repository.save(request);
         return repository.save(product).getId();
     }

@@ -17,3 +17,6 @@ spring:
         spring.json.type.mapping: Order:com.example.order.dto.OrderDTO,Payment:com.example.payment.dto.PaymentDTO
 
 
+eureka:
+  instance:
+    hostname: localhost

@@ -22,3 +22,7 @@ spring:
         spring.json.type.mapping: Payment:com.example.payment.dto.PaymentDTO
         spring.json.trusted.packages: Payment:com.example.payment.dto
 
+
+eureka:
+  instance:
+    hostname: localhost

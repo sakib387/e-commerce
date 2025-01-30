@@ -1,7 +1,6 @@
 package com.example.product.controller;
 
-import com.example.product.map.ProductPurchaseRequest;
-import com.example.product.map.ProductPurchaseResponse;
+
 import com.example.product.model.Product;
 import com.example.product.service.ProductService;
 import jakarta.validation.Valid;
