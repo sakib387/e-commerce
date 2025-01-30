@@ -1,0 +1,19 @@
+server:
+  port: 8040
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://mongo:123@localhost:27017/customer?authSource=admin
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: paymentGroup, orderGroup
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+        spring.json.type.mapping: Order:com.example.order.dto.OrderDTO,Payment:com.example.payment.dto.PaymentDTO
+
+
