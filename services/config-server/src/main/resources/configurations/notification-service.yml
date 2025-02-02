@@ -14,7 +14,7 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: '*'
-        spring.json.type.mapping: Order:com.example.order.dto.OrderDTO,Payment:com.example.payment.dto.PaymentDTO
+        spring.json.type.mapping: Order:com.example.notification.dto.OrderDTO,Payment:com.example.notification.dto.PaymentDTO
 
 
 eureka:

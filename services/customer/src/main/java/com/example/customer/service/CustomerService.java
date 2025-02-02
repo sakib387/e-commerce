@@ -40,13 +40,13 @@ public class CustomerService {
         if (StringUtils.isNotBlank(request.getEmail())) {
             customer.setEmail(request.getEmail());
         }
-        if (request.getAddress()!= null) {
+        if (request.getAddress() != null) {
             customer.setAddress(request.getAddress());
         }
     }
 
     public List<Customer> findAllCustomers() {
-        return  this.repository.findAll();
+        return this.repository.findAll();
 
     }
 

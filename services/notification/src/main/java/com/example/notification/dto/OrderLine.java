@@ -1,4 +1,4 @@
-package com.example.order.dto;
+package com.example.notification.dto;
 
 public class OrderLine {
 

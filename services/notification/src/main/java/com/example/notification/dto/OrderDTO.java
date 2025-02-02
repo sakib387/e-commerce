@@ -1,6 +1,4 @@
-package com.example.order.dto;
-
-import com.example.payment.dto.PaymentMethod;
+package com.example.notification.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

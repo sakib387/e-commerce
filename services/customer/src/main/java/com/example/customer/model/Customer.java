@@ -20,7 +20,6 @@ public class Customer {
     private Address address;
 
 
-
     public String getId() {
         return id;
     }

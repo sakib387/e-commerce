@@ -1,10 +1,10 @@
 package com.example.notification.service;
 
 
-import com.example.payment.dto.PaymentDTO;
+import com.example.notification.dto.PaymentDTO;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
-import com.example.order.dto.OrderDTO;
+import com.example.notification.dto.OrderDTO;
 
 
 @Service
