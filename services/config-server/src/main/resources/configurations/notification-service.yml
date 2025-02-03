@@ -4,7 +4,7 @@ server:
 spring:
   data:
     mongodb:
-      uri: mongodb://mongo:123@localhost:27017/customer?authSource=admin
+      uri: mongodb://mongo:123@localhost:27017/notification?authSource=admin
   kafka:
     consumer:
       bootstrap-servers: localhost:9092
