@@ -5,6 +5,7 @@ import com.example.customer.model.Customer;
 import com.example.customer.service.CustomerService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class CustomerController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> createCustomer(
             @RequestBody @Valid Customer request
     ) {
