@@ -10,6 +10,15 @@ public class KafkaConfig {
 
     @Bean
     public NewTopic paymentTopic(){
-        return TopicBuilder.name("paymentTopic-2").build();
+        return TopicBuilder.name("topic-payment").build();
+    }
+
+    @Bean
+    public NewTopic paymentSuccessTopic(){
+        return TopicBuilder.name("payment-success-1").build();
+    }
+
+    @Bean NewTopic cancelNewTopic(){
+        return TopicBuilder.name("cancel-order").build();
     }
 }

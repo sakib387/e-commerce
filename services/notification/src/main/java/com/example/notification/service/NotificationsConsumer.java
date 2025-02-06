@@ -2,6 +2,8 @@ package com.example.notification.service;
 
 
 import com.example.notification.dto.PaymentDTO;
+import com.example.notification.dto.PaymentSuccessDTO;
+import com.example.notification.dto.ShipmentSuccess;
 import com.example.notification.model.Notification;
 import com.example.notification.repository.NotificationRepository;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -22,27 +24,17 @@ public class NotificationsConsumer {
         this.repository = repository;
     }
 
-    @KafkaListener(topics = "paymentTopic-2" ,groupId = "order-group")
-    public void consume(PaymentDTO payment) {
-        System.out.println("Received payment: " + payment);
-        this.repository.save(
-                Notification.builder()
-                        .type(PAYMENT_CONFIRMATION)
-                        .notificationDate(LocalDateTime.now())
-                        .paymentConfirmation(payment)
-                        .build()
-        );
+    @KafkaListener(topics = "payment-success-1" ,groupId = "order-payment-group")
+    public void consume(PaymentSuccessDTO payment) {
+        System.out.println("payment success from notification");
+
     }
 
-    @KafkaListener(topics = "orderTopic-2" ,groupId = "order-group")
-    public void consume(OrderDTO order) {
-        System.out.println("Received Order: " + order);
-        this.repository.save(
-                Notification.builder()
-                        .type(PAYMENT_CONFIRMATION)
-                        .notificationDate(LocalDateTime.now())
-                        .orderConfirmation(order)
-                        .build()
-        );
+    @KafkaListener(topics = "order-complete" ,groupId = "order-complete-group")
+    public void consumeCompleted(ShipmentSuccess shipmentSuccess) {
+        System.out.println("shipment success from notification");
+
     }
+
+
 }

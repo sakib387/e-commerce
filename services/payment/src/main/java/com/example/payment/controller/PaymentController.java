@@ -22,7 +22,7 @@ public class PaymentController {
     }
 
     @PostMapping
-    public ResponseEntity<Integer> createPayment(
+    public ResponseEntity<Payment> createPayment(
             @RequestBody Payment request
     ) {
         return ResponseEntity.ok(this.service.createPayment(request));

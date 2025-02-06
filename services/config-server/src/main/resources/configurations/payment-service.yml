@@ -14,12 +14,22 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
   kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+        spring.json.type.mapping: Order:com.example.payment.dto.OrderDTO
+
     producer:
       bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
-        spring.json.type.mapping: Payment:com.example.payment.dto.PaymentDTO
+        spring.json.type.mapping: Payment:com.example.payment.dto.PaymentDTO,Cancel:com.example.payment.dto.CancelDTO,Success:com.example.payment.dto.PaymentSuccessDTO
         spring.json.trusted.packages: Payment:com.example.payment.dto
 
 

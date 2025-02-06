@@ -36,19 +36,19 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeExchange(exchange -> exchange
                         .pathMatchers("/eureka/**").permitAll()  // Allow Eureka
-                        .pathMatchers("/customer-service/post/**", "/product-service/post/**").hasRole("ADMIN") // Only ADMIN can POST
-                        .pathMatchers("/customer-service/get/**", "/product-service/get/**").hasAnyRole("ADMIN", "USER") // Both can GET
-                        .anyExchange().authenticated()
+                      //  .pathMatchers("/customer-service/post/**", "/product-service/post/**").hasRole("ADMIN") // Only ADMIN can POST
+                      //  .pathMatchers("/customer-service/get/**", "/product-service/get/**").hasAnyRole("ADMIN", "USER") // Both can GET
+                        .anyExchange().permitAll()
                 )
-               .oauth2ResourceServer(oAuth2ResourceServerSpec -> oAuth2ResourceServerSpec.jwt(Customizer.withDefaults()))
-             ///  .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())))
+                .oauth2ResourceServer(oAuth2ResourceServerSpec -> oAuth2ResourceServerSpec.jwt(Customizer.withDefaults()))
+                ///  .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())))
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .build();
     }
 
     @Bean
     public Converter<Jwt, Mono<AbstractAuthenticationToken>> jwtAuthenticationConverter() {
-         JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+        JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
         grantedAuthoritiesConverter.setAuthorityPrefix("ROLE_");
         grantedAuthoritiesConverter.setAuthoritiesClaimName("realm_access.roles");
 

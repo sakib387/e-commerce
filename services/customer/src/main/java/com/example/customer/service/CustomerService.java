@@ -1,12 +1,17 @@
 package com.example.customer.service;
 
+import com.example.customer.dto.CancelDTO;
+import com.example.customer.dto.OrderDTO;
 import com.example.customer.exception.CustomerNotFoundException;
 import com.example.customer.model.Customer;
 import com.example.customer.repository.CustomerRepository;
 import io.micrometer.common.util.StringUtils;
 
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -17,6 +22,7 @@ public class CustomerService {
     public CustomerService(CustomerRepository repository) {
         this.repository = repository;
     }
+
 
     public String createCustomer(Customer request) {
         System.out.println(request);
@@ -51,11 +57,9 @@ public class CustomerService {
     }
 
     public Customer findById(String id) {
-        return this.repository.findById(id)
+        return this.repository.findById(id).orElse(null);
 
-                .orElseThrow(() -> new CustomerNotFoundException(String.format("No customer found with the provided ID: %s", id)));
-    }
-
+     }
 
     public void deleteCustomer(String id) {
         this.repository.deleteById(id);

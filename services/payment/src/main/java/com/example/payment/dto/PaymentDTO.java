@@ -10,6 +10,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class PaymentDTO {
@@ -18,7 +19,7 @@ public class PaymentDTO {
     private BigDecimal amount;
 
     private PaymentMethod paymentMethod;
-
+    private List<OrderLine> orderLine;
     private String orderId;
     private String customerId;
 
@@ -26,14 +27,23 @@ public class PaymentDTO {
 
     private String lastModifiedDate;
 
-    public PaymentDTO(Integer paymentId, BigDecimal amount, PaymentMethod paymentMethod, String orderId, String customerId, String createdDate, String lastModifiedDate) {
+    public PaymentDTO(Integer paymentId, BigDecimal amount, PaymentMethod paymentMethod, List<OrderLine> orderLine, String orderId, String customerId, String createdDate, String lastModifiedDate) {
         this.paymentId = paymentId;
         this.amount = amount;
         this.paymentMethod = paymentMethod;
+        this.orderLine = orderLine;
         this.orderId = orderId;
         this.customerId = customerId;
         this.createdDate = createdDate;
         this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public List<OrderLine> getOrderLine() {
+        return orderLine;
+    }
+
+    public void setOrderLine(List<OrderLine> orderLine) {
+        this.orderLine = orderLine;
     }
 
     public Integer getPaymentId() {

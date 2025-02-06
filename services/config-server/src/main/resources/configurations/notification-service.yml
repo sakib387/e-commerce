@@ -8,13 +8,13 @@ spring:
   kafka:
     consumer:
       bootstrap-servers: localhost:9092
-      group-id: paymentGroup, orderGroup
+
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: '*'
-        spring.json.type.mapping: Order:com.example.notification.dto.OrderDTO,Payment:com.example.notification.dto.PaymentDTO
+        spring.json.type.mapping: Success:com.example.notification.dto.PaymentSuccessDTO,Complete:com.example.notification.dto.ShipmentSuccess
 
 
 eureka:

@@ -1,5 +1,6 @@
 package com.example.order.model;
 
+import com.example.order.dto.OrderStatus;
 import com.example.order.dto.PaymentMethod;
 import jakarta.persistence.*;
 import lombok.*;
@@ -35,6 +36,9 @@ public class Order implements Serializable {
 
     @OneToMany(mappedBy = "order")
     private List<OrderLine> orderLines;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
@@ -100,6 +104,14 @@ public class Order implements Serializable {
         this.lastModifiedDate = lastModifiedDate;
     }
 
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -108,6 +120,7 @@ public class Order implements Serializable {
                 ", paymentMethod=" + paymentMethod +
                 ", customerId='" + customerId + '\'' +
                 ", orderLines=" + orderLines +
+                ", orderStatus=" + orderStatus +
                 ", createdDate=" + createdDate +
                 ", lastModifiedDate=" + lastModifiedDate +
                 '}';

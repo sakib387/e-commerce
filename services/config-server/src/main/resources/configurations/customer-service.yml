@@ -3,6 +3,24 @@ server:
 
 
 spring:
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.type.mapping: Order:com.example.customer.dto.OrderDTO, Cancel:com.example.customer.dto.CancelDTO
+        spring.json.trusted.packages: com.example.customer.dto
+    consumer:
+      bootstrap-servers: localhost:9092
+
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+        spring.json.type.mapping: Order:com.example.customer.dto.OrderDTO
+
   data:
     mongodb:
       uri: mongodb://mongo:123@localhost:27017/customer?authSource=admin

@@ -1,4 +1,8 @@
-
+jwt:
+  auth:
+    converter:
+      resource-id: demo-for-keyclock
+      principle-attribute: preferred_username
 
 spring:
   security:

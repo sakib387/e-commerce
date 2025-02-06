@@ -14,6 +14,7 @@ import java.util.List;
 @RequestMapping("/api/v1/customers")
 public class CustomerController {
 
+
     private final CustomerService service;
 
     public CustomerController(CustomerService service) {
@@ -21,7 +22,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+
     public ResponseEntity<String> createCustomer(
             @RequestBody @Valid Customer request
     ) {
@@ -46,6 +47,7 @@ public class CustomerController {
     public ResponseEntity<Customer> findById(
             @PathVariable("customer-id") String customerId
     ) {
+        System.out.println("sakib");
         return ResponseEntity.ok(this.service.findById(customerId));
     }
 
